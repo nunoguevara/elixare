@@ -17,6 +17,11 @@ pub fn run() -> Result<(), Status> {
         return Ok(());
     }
 
+    if args[1]== "--lang" {
+        miscellaneous::lang();
+        return Ok(());
+    }
+
     let language: &str = args.get(1).ok_or(Status::InsufficientArgs)?;
     let filename: &str = args.get(2).ok_or(Status::NoName)?;
     
