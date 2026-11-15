@@ -1,8 +1,9 @@
-use crate::miscellaneous;
-use crate::status::Status;
-
 use std::env;
 use std::process::{ExitCode};
+
+use crate::languages;
+use crate::miscellaneous;
+use crate::status::Status;
 
 pub fn run() -> Result<(), Status> {
     let args: Vec<String> = env::args().collect();
@@ -17,8 +18,9 @@ pub fn run() -> Result<(), Status> {
         return Ok(());
     }
 
-    let language: &String = args.get(1).ok_or(Status::InsufficientArgs)?;
-    let file = args.get(2).ok_or(Status::NoName)?;
-
+    let language: &str = args.get(1).ok_or(Status::InsufficientArgs)?;
+    let filename: &str = args.get(2).ok_or(Status::NoName)?;
+    
+    languages::write_file(&filename, &language)?;
     return Ok(());
 }

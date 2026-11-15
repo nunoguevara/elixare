@@ -1,6 +1,7 @@
+mod languages;
 mod miscellaneous;
-mod status;
 mod run;
+mod status;
 
 use std::fs;
 use std::env;
