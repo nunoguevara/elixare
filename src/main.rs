@@ -3,35 +3,32 @@ mod miscellaneous;
 mod run;
 mod status;
 
-use std::fs;
-use std::env;
-use std::io::Write;
-use std::process::{ExitCode, Termination};
+use std::process::ExitCode;
 
-// fn create_c(name: &String) -> status::Status {
-//     let file_c = match fs::File::create_new(name) {
-//         Ok(file_c) => file_c,
-//         Err(_e) => return status::Status::CreationFailure,
-//     };
-//
-//     let _ = match writeln!(
-//         &file_c, 
-//         concat!(
-//             r#"#include <stdio.h>                  "#, "\n\n",
-//             r#"int main(int argc, char *argv[]) {{ "#, "\n",
-//             r#"    printf(\"Hello world!\");       "#, "\n",
-//             r#"    return 0;                       "#, "\n",
-//             r#"}}                                  "#
-//         )
-//     ) {
-//         Ok(_) => (),
-//         Err(_e) => return status::Status::WriteFailure,
-//     };
-// }
+use crate::status::Status;
 
 fn main() -> ExitCode {
     match run::run() {
         Ok(()) => ExitCode::SUCCESS,
-        Err(status) => ExitCode::from(status as u8),
+        Err(Status::InsufficientArgs) => {
+            eprintln!("ERROR: Please specify an argument or use --help.");
+            ExitCode::from(Status::InsufficientArgs as u8)
+        },
+        Err(Status::InvalidLanguage) => {
+            eprintln!("ERROR: Not an available language, use --language to display available languages");
+            ExitCode::from(Status::InvalidLanguage as u8)
+        },
+        Err(Status::NoName) => {
+            eprintln!("ERROR: Please specify a file name.");
+            ExitCode::from(Status::NoName as u8)
+        },
+        Err(Status::CreationFailure) => {
+            eprintln!("ERROR: Failed to create the file, either permission denied or file already exists.");
+            ExitCode::from(Status::CreationFailure as u8)
+        },
+        Err(Status::WriteFailure) => {
+            eprintln!("ERROR: Failed to write on the file.");
+            ExitCode::from(Status::WriteFailure as u8)
+        },
     }
 }

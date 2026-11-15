@@ -1,4 +1,5 @@
 pub mod c;
+pub mod cpp;
 
 use std::collections::HashMap;
 use std::fs;
@@ -9,21 +10,23 @@ use crate::status::Status;
 type Generator = fn() -> &'static str;
 
 pub fn registry() -> HashMap<&'static str, Generator> { 
-    let registries: HashMap<&'static str, Generator> = HashMap::from([
+    HashMap::from([
         ("--c", c::generate as Generator),
-    ]);
-    return registries;
+        ("--cpp", cpp::generate),
+    ])
 }
 
 pub fn write_file(name: &str, language: &str) -> Result<(), Status> {
+    let generator = registry();
+    let source = generator.get(&language).ok_or(Status::InvalidLanguage)?;
+    
     let file = match fs::File::create_new(&name) {
         Ok(file) => Ok(file),
         Err(_) => return Err(Status::CreationFailure),
+    
     };
-    let generator = registry();
-    let source = generator.get(&language).ok_or(Status::InvalidLanguage)?;
     match file?.write_all(source().as_bytes()) {
         Ok(_) => Ok(()),
-        Err(_) => return Err(Status::CreationFailure),
+        Err(_) => return Err(Status::WriteFailure),
     }
 }
