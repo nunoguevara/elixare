@@ -1,3 +1,5 @@
+pub mod custom;
+
 pub mod c;
 pub mod cpp;
 
@@ -16,15 +18,27 @@ pub fn registry() -> HashMap<&'static str, Generator> {
     ])
 }
 
+pub fn get_generator(language: &str) -> Result<Generator, Status> {
+    if let Some(generator) = custom::registry().get(language) {
+        return Ok(*generator);
+    }
+
+    if let Some(generator) = registry().get(language) {
+        return Ok(*generator);
+    }
+
+    Err(Status::InvalidLanguage)
+}
+
 pub fn write_file(name: &str, language: &str) -> Result<(), Status> {
-    let generator = registry();
-    let source = generator.get(&language).ok_or(Status::InvalidLanguage)?;
-    
+    let source = get_generator(&language)?;
+
     let file = match fs::File::create_new(&name) {
         Ok(file) => Ok(file),
         Err(_) => return Err(Status::CreationFailure),
     
     };
+
     match file?.write_all(source().as_bytes()) {
         Ok(_) => Ok(()),
         Err(_) => return Err(Status::WriteFailure),
