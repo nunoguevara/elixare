@@ -15,7 +15,7 @@ fn main() -> ExitCode {
             ExitCode::from(Status::InsufficientArgs as u8)
         },
         Err(Status::InvalidLanguage) => {
-            eprintln!("ERROR: Not an available language, use --language to display available languages");
+            eprintln!("ERROR: Not an available language, use --lang to display officially available languages, or --custom-lang for user-extended supported language(s).");
             ExitCode::from(Status::InvalidLanguage as u8)
         },
         Err(Status::NoName) => {

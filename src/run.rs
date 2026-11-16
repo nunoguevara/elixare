@@ -17,8 +17,13 @@ pub fn run() -> Result<(), Status> {
         return Ok(());
     }
 
-    if args[1]== "--lang" {
+    if args[1] == "--lang" {
         miscellaneous::lang();
+        return Ok(());
+    }
+
+    if args[1] == "--custom-lang" {
+        miscellaneous::custom_lang();
         return Ok(());
     }
 
