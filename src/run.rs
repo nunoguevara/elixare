@@ -7,22 +7,22 @@ use crate::status::Status;
 pub fn run() -> Result<(), Status> {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() < 2 || args[1] == "--help" {
+    if args.len() < 2 || args[1] == "--help" || args[1] == "-h" {
         miscellaneous::help();
         return Ok(());
     }
 
-    if args[1] == "--version" {
+    if args[1] == "--version" || args[1] == "-v" {
         miscellaneous::version();
         return Ok(());
     }
 
-    if args[1] == "--lang" {
+    if args[1] == "--lang" || args[1] == "-l" {
         miscellaneous::lang();
         return Ok(());
     }
 
-    if args[1] == "--custom-lang" {
+    if args[1] == "--custom-lang" || args[1] == "-cl" {
         miscellaneous::custom_lang();
         return Ok(());
     }
