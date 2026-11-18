@@ -24,7 +24,7 @@ cargo install elixare
 ```shell
 git clone --depth 1 https://github.com/nunoguevara/elixare.git
 cd elixare
-cargo install --path
+cargo install --path .
 ```
 
 ## Extension

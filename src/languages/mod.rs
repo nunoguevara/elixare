@@ -2,6 +2,7 @@ pub mod custom;
 
 pub mod c;
 pub mod cpp;
+pub mod rust;
 
 use std::collections::HashMap;
 use std::fs;
@@ -15,6 +16,7 @@ pub fn registry() -> HashMap<&'static str, Generator> {
     HashMap::from([
         ("--c", c::generate as Generator),
         ("--cpp", cpp::generate),
+        ("--rust", rust::generate),
     ])
 }
 

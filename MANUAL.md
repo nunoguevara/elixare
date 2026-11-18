@@ -60,7 +60,8 @@ boilerplate. You can also remove the comments if you think it's a clutter (the o
 pub(super) fn generate() -> &'static str {
 r#"fn main() {
     println!("Hello world!");
-}"#
+}
+"#
 }
 ```
 
@@ -111,6 +112,6 @@ while `my_rust::generate` is defined as `mod_name::function` which basically cal
 ## Step 6
 The last step, you can run:
 ```shell
-cargo install --path
+cargo install --path .
 ```
 To build and install it.
