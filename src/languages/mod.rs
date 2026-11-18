@@ -2,6 +2,9 @@ pub mod custom;
 
 pub mod c;
 pub mod cpp;
+pub mod java;
+pub mod java21;
+pub mod kotlin;
 pub mod rust;
 
 use std::collections::HashMap;
@@ -16,6 +19,9 @@ pub fn registry() -> HashMap<&'static str, Generator> {
     HashMap::from([
         ("--c", c::generate as Generator),
         ("--cpp", cpp::generate),
+        ("--java", java::generate),
+        ("--java21", java21::generate),
+        ("--kotlin", kotlin::generate),
         ("--rust", rust::generate),
     ])
 }
