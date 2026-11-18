@@ -55,7 +55,7 @@ with `snake_case` as the naming convention. In this case, I'd name it as `my_rus
 
 ## Step 3
 After copying, you can look at inside the file (in this case, it's `my_rust.rs`) and edit the paragraph between `r#"` and `"#` to add your custom
-boilerplate. For example:
+boilerplate. You can also remove the comments if you think it's a clutter (the ones started with `/`). For example:
 ```rust
 pub(super) fn generate() -> &'static str {
 r#"fn main() {
