@@ -23,7 +23,7 @@ fn main() -> ExitCode {
             ExitCode::from(Status::NoName as u8)
         },
         Err(Status::CreationFailure) => {
-            eprintln!("ERROR: Failed to create the file, either permission denied or file already exists.");
+            eprintln!("ERROR: Failed to create the file, make sure to check pre-existing file, permission, or parent directory existence.");
             ExitCode::from(Status::CreationFailure as u8)
         },
         Err(Status::WriteFailure) => {
