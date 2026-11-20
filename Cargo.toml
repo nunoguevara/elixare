@@ -1,10 +1,19 @@
 [package]
 name = "elixare"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+rust-version = "1.80.0"
+authors = ["Nuno"]
+description ="A simple and extensible CLI boilerplate generation tool"
+readme = "README.md"
+license = "Apache-2.0"
+repository = "https://github.com/nunoguevara/elixare"
+keywords = ["cli", "tool", "development", "boilerplate"] 
+categories = ["command-line-utilities"]
 
 [dependencies]
 
 [profile.release]
 strip = true
 codegen-units = 1
+
