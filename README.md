@@ -2,7 +2,7 @@
 An extensible and lightweight boilerplate generator that also can be used
 out-of-the-box for convenient and control.
 
-![GitHub Tag](https://img.shields.io/github/v/tag/nunoguevara/elixare?style=flat-square)
+![GitHub Tag](https://img.shields.io/github/v/tag/nunoguevara/elixare?style=flat-square&label=version)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/nunoguevara/elixare/release.yml?style=flat-square)
 
 ## Features
