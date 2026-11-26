@@ -4,12 +4,18 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.80.0"
 authors = ["Nuno"]
-description ="A simple and extensible CLI boilerplate generation tool"
+description = "A simple and extensible CLI boilerplate generation tool"
 readme = "README.md"
 license = "Apache-2.0"
 repository = "https://github.com/nunoguevara/elixare"
 keywords = ["cli", "tool", "development", "boilerplate"] 
 categories = ["command-line-utilities"]
+
+[package.metadata.wix]
+upgrade-guid = "56BDED41-52C4-45C2-AC99-CF7F951DCA21"
+path-guid = "188E3AE1-5028-4549-BD35-EB1ADA28CE0A"
+license = false
+eula = false
 
 [dependencies]
 
@@ -17,3 +23,7 @@ categories = ["command-line-utilities"]
 strip = true
 codegen-units = 1
 
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
